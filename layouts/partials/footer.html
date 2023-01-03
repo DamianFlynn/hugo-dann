@@ -1,0 +1,76 @@
+<!-- begin footer -->
+<footer class="footer">
+
+  <div class="footer__inner">
+
+    {{ partial "subscribe.html" . }}
+
+    <div class="container">
+      <div class="row">
+
+        {{ if .Site.Params.author.enable }}
+        <div class="col col-6 col-d-12">
+          <div class="widget-footer widget-author">
+            <div class="widget-author__avatar">
+              <img class="lazy" data-src="{{ .Site.Params.author.author__avatar }}"
+                alt="{{ .Site.Params.author.author__name }}">
+            </div>
+            {{ if .Site.Params.author.author__name }}
+            <h3 class="widget-author__title">{{ .Site.Params.author.author__name }}</h3>
+            {{ end }}
+            {{ if .Site.Params.author.author__bio }}
+            <p class="widget-author__bio">{{ .Site.Params.author.author__bio }}</p>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+
+        <div class="col col-2 col-m-12">
+          <div class="widget-footer widget-social">
+            <h3 class="widget-footer__title">Follow</h3>
+            {{ if .Site.Params.social }}
+            {{ with .Site.Params.social }}
+            <div class="social">
+              <ul class="social__list list-reset">
+                {{ range . }}
+                <li class="social__item">
+                  <i class="ion {{ .icon}}" style="background-color: {{ .color }};"></i>
+                  <a class="social__link" href="{{ .link }}" target="_blank" rel="noopener"  aria-label="{{ .name }} link">{{ .name }}</a>
+                </li>
+                {{ end }}
+              </ul>
+            </div>
+            {{ end }}
+            {{ end }}
+          </div>
+        </div>
+
+        <div class="col col-2 col-m-12">
+          <div class="widget-footer widget-nav">
+            <h3 class="widget-footer__title">Menu</h3>
+            <ul class="widget-nav__list list-reset">
+              {{ range .Site.Params.footer.link }}
+              <li class="widget-nav__item">
+                <a href="{{ .url }}" class="widget-nav__link">{{ .name }}</a>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__info">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <div class="copyright">{{ dateFormat "2006" now }} &copy; <a href="/">{{ .Site.Title }}</a>. All Right Reserved. Published with <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> and <a href="https://anvodstudio.com/" target="_blank" rel="noopener noreferrer">Dann</a>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+<!-- end footer -->

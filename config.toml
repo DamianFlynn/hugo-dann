@@ -1,0 +1,197 @@
+#-------------------------------
+# Site Settings
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Dann"
+googleAnalytics = "" # Add your identifier. For example UA-99631805-1.
+paginate = 6
+
+
+#-------------------------------
+# Main Menu
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Pages"
+    weight = 2
+    hasChildren = true
+
+
+  [[menu.main]]
+    parent = "Pages"
+    name = "Authors"
+    url = "/authors/"
+    weight = 1
+
+  [[menu.main]]
+    parent = "Pages"
+    name = "Elements"
+    url = "/elements/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 3
+
+
+[params]
+  logo = "" # You can add own logo. For example "/images/logo.png".
+  description = "Multipurpose HUGO Blog Theme"
+
+
+  #-------------------------------
+  # Hero Settings
+  [params.hero]
+    hero__title = "Hi there! I’m Dann Kanigan, a Filmmaker and Content Creator based in Toronto, Ontario, Canada. This blog is about learning, life, and inspiring you to take one step forward."
+
+
+  #-------------------------------
+  # Blog Section Settings
+  [params.blog]
+    enable = true
+    blog__title = "Blog & Resources"
+    blog__description = "Find out how to set up a successful blog or how to make yours even better!"
+
+
+  #-------------------------------
+  # Recommended Tag Settings
+  [params.tag]
+    enable = true
+    tag__title = "Recommended"
+    tag__name = "Motivation" # To display the tag section, specify your favorite tag.
+
+
+  # Newsletter Settings
+  [params.mailchimp]
+    enable = true
+    mailchimp__identifier = "frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3" # Add your MailChimp form identifier. For example - frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3
+    mailchimp__title = "Get interesting news"
+    mailchimp__description = "Subscribe to our newsletter and we’ll send you the emails of latest posts."
+    mailchimp__input__text = "Your Email Address..."
+    mailchimp__button__text = "Subscribe"
+    mailchimp__background__image = "https://via.placeholder.com/1800x1200"
+
+
+  #-------------------------------
+  # Footer Settings
+
+  # Author Info
+  [params.author]
+    enable = true
+    author__name = "Dann Kanigan"
+    author__bio = "Hi there! I’m Dann Kanigan, a Filmmaker and Content Creator based in Toronto, Ontario, Canada. This blog is about learning, life, and inspiring you to take one step forward."
+    author__avatar = "https://via.placeholder.com/200x200"
+
+
+  # Social Links
+  [[params.social]]
+    icon = "ion-logo-twitter"
+    color = "#55acee"
+    name = "Twitter"
+    link = "https://twitter.com"
+
+  [[params.social]]
+    icon = "ion-logo-facebook"
+    color = "#3b5999"
+    name = "Facebook"
+    link = "https://facebook.com"
+
+  [[params.social]]
+    icon = "ion-logo-pinterest"
+    color = "#bd081c"
+    name = "Pinterest"
+    link = "https://pinterest.com"
+
+  [[params.social]]
+    icon = "ion-logo-dribbble"
+    color = "#ea4c89"
+    name = "Dribbble"
+    link = "https://dribbble.com"
+
+  [[params.social]]
+    icon = "ion-logo-instagram"
+    color = "#e4405f"
+    name = "Instagram"
+    link = "https://instagram.com"
+
+  # Example of adding a new link to the footer section:
+  # [[params.social]]
+  #   icon = "ion-logo-youtube"
+  #   color = "ff0000"
+  #   name = "Youtube"
+  #   link = "https://youtube.com"
+
+  # Other icons can be found at https://ionicons.com/v4/
+
+
+  # Footer Navigation
+  [[params.footer.link]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[params.footer.link]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+  [[params.footer.link]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 3
+
+  [[params.footer.link]]
+    name = "Authors"
+    url = "/authors/"
+    weight = 3
+
+  [[params.footer.link]]
+    name = "Elements"
+    url = "/elements/"
+    weight = 5
+
+
+  #-------------------------------
+  # Contact Settings
+  [params.contact]
+    email = "your@email.com" # Add your email for contant form
+
+    # NOTE
+    # Dann theme comes with a contact form built-in. You can use this form with Formspree (https://formspree.io/) service and get up to 50 submissions for free. Also, you can easily switch to another service if you want.
+
+  #-------------------------------
+  # Comment Section (Disqus)
+  [params.disqus]
+    enable = true
+    disqusShortname = "anvod-studio-test" # Add your shortname for Disqus Comment. For example anvod-studio-test
+
+
+[taxonomies]
+  author = "authors"
+  tag = "tags"
+
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+
+[markup.highlight]
+  codeFences = true
+  guessSyntax = true
+  noClasses = false

@@ -1,0 +1,64 @@
+{{ $recommended_tag := (index .Site.Taxonomies.tags (lower .Site.Params.tag.tag__name)).Pages }}
+
+{{ if and (.Site.Params.tag.enable) (ge $recommended_tag 1) }}
+<!-- begin tags-section -->
+<section class="section section-tags">
+  <div class="container">
+
+    <div class="row">
+      <div class="col col-12">
+        <div class="section__head__small">
+          <h3 class="section__title">{{ .Site.Params.tag.tag__title }}</h3>
+          <a class="section__link" href="/tags/{{ lower .Site.Params.tag.tag__name }}">See all <i class="ion ion-ios-arrow-round-forward"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      {{ range first 4 $recommended_tag }}
+      <div class="article col col-3 col-d-6 col-m-12">
+
+        <div class="article__inner">
+          <div class="article__head">
+            {{ if .Params.video_embed }}
+            <div class="video-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <polygon points="40,30 65,50 40,70"></polygon>
+              </svg>
+            </div>
+            {{ end }}
+
+            {{ if .Params.Image }}
+            <a class="article__image" href="{{ .RelPermalink }}">
+              <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
+            </a>
+            {{ end }}
+
+            <div class="article__meta">
+            {{ if .Params.authors }}
+              {{ range .Params.authors }}
+              {{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}
+              <a href="{{ .Permalink }}" class="article__author__image">
+                <img class="lazy" data-src="{{ .Params.image }}" alt="{{ .Params.name }}">
+              </a>
+              {{ end }}
+              {{ end }}
+            {{ end }}
+            </div>
+          </div>
+
+          <div class="article__content">
+            <h2 class="article__title">
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h2>
+          </div>
+        </div>
+
+      </div>
+      {{ end }}
+    </div>
+
+  </div>
+</section>
+<!-- end tags-section -->
+{{ end }}

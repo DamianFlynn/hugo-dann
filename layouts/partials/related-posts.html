@@ -1,0 +1,68 @@
+{{ if or (in ( where .Site.Pages ".Params.tags" "intersect" .Params.tags ) "Pages(0)" ) (in ( where .Site.Pages ".Params.tags" "intersect" .Params.tags ) "Pages(1)" ) }}
+{{ else }}
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts animate">
+    <div class="row">
+      <div class="col col-12">
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head__small">
+              <h2 class="section__title">You may also like</h2>
+              {{ range first 1 ($.GetTerms "tags") }}
+                <a href="{{ .Permalink }}" class="section__link related-tag"><div>See all<span> {{ .LinkTitle }}</span></div> <i class="ion ion-ios-arrow-round-forward"></i></a>
+              {{ end }}
+              </a>
+            </div>
+          </div>
+          <div class="row">
+          {{ range first 4 ( where ( where .Site.Pages.ByDate.Reverse ".Params.tags" "intersect" .Params.tags ) "Permalink" "!=" .Permalink ) }}
+            <div class="article col col-3 col-d-6 col-m-12">
+              <div class="article__inner">
+
+                <div class="article__head">
+                  {{ if .Params.video_embed }}
+                  <div class="video-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                      <polygon points="40,30 65,50 40,70"></polygon>
+                    </svg>
+                  </div>
+                  {{ end }}
+
+                  {{ if .Params.Image }}
+                  <a class="article__image" href="{{ .RelPermalink }}">
+                    <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
+                  </a>
+                  {{ end }}
+
+                  <div class="article__meta">
+                    {{ if .Params.authors }}
+                    {{ range .Params.authors }}
+                    {{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}
+                    <a href="{{ .Permalink }}" class="article__author__image">
+                      <img class="lazy" data-src="{{ .Params.image }}" alt="{{ .Params.name }}">
+                    </a>
+                    {{ end }}
+                    {{ end }}
+                    {{ end }}
+                  </div>
+                </div>
+
+
+                <div class="article__content">
+                  <h2 class="article__title">
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                  </h2>
+                </div>
+
+              </div>
+            </div>
+          {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- end related posts -->
+{{ end }}

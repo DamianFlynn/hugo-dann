@@ -1,0 +1,27 @@
+{{ define "main" }}
+
+{{ partial "hero.html" . }}
+
+<div class="container">
+  <div class="section__info">
+    <div class="section__head">
+      <h2 class="section__title">{{ .Site.Params.blog.blog__title | safeHTML }}</h2>
+      {{ if .Site.Params.blog.blog__description }}
+        <p class="section__description">{{ .Site.Params.blog.blog__description }}</p>
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="row grid">
+    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "posts") }}
+    {{ range $paginator.Pages }}
+      {{ partial "article.html" . }}
+    {{ end }}
+  </div>
+</div>
+
+{{ partial "pagination.html" . }}
+
+{{ partial "tags-section.html" . }}
+
+{{ end }}
