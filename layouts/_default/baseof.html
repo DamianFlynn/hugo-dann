@@ -1,6 +1,55 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
 
+{{ if eq .Type "gallery" }}
+    {{ $image := (index (.Resources.ByType "image") 0 ) }}
+    {{ $imageUrl := "" }}
+
+    {{ if and (.Site.Params.resizeImages | default true) (.Params.resizeImages | default true) }}
+        {{ $imageUrl = ($image.Fill "700x350 q95").Permalink }}
+    {{ else }}
+        {{ $imageUrl = $image.Permalink }}
+    {{ end }}
+
+    {{ .Scratch.Set "image" $imageUrl }}
+
+{{ else if .Resources.GetMatch "featuredImage.*" }}
+    {{ $imageUrl := "" }}
+
+    {{ if and (.Site.Params.resizeImages | default true) (.Params.resizeImages | default true) }}
+         {{ $imageUrl = ((.Resources.GetMatch "featuredImage.*").Fill "700x350 q95").Permalink }}
+    {{ else }}
+        {{ $imageUrl = (.Resources.GetMatch "featuredImage.*").Permalink }}
+    {{ end }}
+
+    {{ .Scratch.Set "image" $imageUrl }}
+
+{{ else if .Params.featuredImage }}
+  {{ .Scratch.Set "image" (.Params.featuredImage | absURL) }}
+{{ else if .Params.mp4videoImage }}
+  {{ .Scratch.Set "image" (.Params.mp4videoImage | absURL) }}
+{{ else }}
+  {{ .Scratch.Set "image" (printf "https://www.gravatar.com/avatar/%s?size=200" (md5 .Site.Params.gravatarEMail)) }}
+{{ end }}
+
+{{- if ne .Description "" -}}
+{{ .Scratch.Set "description" (.Description) }}
+{{- else -}}
+{{- if eq .Title .Site.Title -}}
+{{ .Scratch.Set "description" (.Site.Params.description) }}
+{{- else -}}
+{{ .Scratch.Set "description" (printf "%s - %s" (.Title) (.Site.Params.description)) }}
+{{- end -}}
+{{- end -}}
+
+{{- if eq .Site.Title .Title -}}
+    {{ .Scratch.Set "title" (.Site.Params.subtitle) }}
+{{- else -}}
+    {{ .Scratch.Set "title" (.Title) }}
+{{- end -}}
+
+<html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="{{ .Site.LanguageCode }}">
+
+</html>
 {{ partial "head.html" . }}
 
 <body>
