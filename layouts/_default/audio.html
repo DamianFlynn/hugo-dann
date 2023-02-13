@@ -1,5 +1,13 @@
 {{ define "main" }}
 
+<h3>audio layouts</h3>
+<div><table>
+  <tr><td>Kind</td><td>{{ .Kind }}</td></tr>
+  <tr><td>Type</td><td>{{ .Type }}</td></tr>
+  <tr><td>Section</td><td>{{ .Section }}</td></tr>
+  <tr><td>Layout</td><td>{{ .Layout }}</td></tr>
+</table></div>
+
 {{ if or (eq .Section "post") (eq .Section "posts") }}
 
 <div class="post-head{{ if .Params.video_embed }} post-head-video{{ end }}">
