@@ -25,52 +25,12 @@
     <div class="container">
       <div class="row">
         <div class="posts-slider">
-         {{ range (where (where (where .Site.RegularPages "Type" "ne" "page") ".Params.featured" "=" true) ".Params.featured" "=" true) }}
-          <div class="article col col-4 col-d-6 col-t-12">
-            <div class="article__inner">
-          
-              <div class="article__head">
-                {{ if .Params.video_embed }}
-                <div class="video-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                    <polygon points="40,30 65,50 40,70"></polygon>
-                  </svg>
-                </div>
-                {{ end }}
-          
-                {{ if .Params.Image }}
-                <a class="article__image" href="{{ .RelPermalink }}">
-                  <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
-                </a>
-                {{ end }}
-          
-                <div class="article__meta">
-                {{ if .Params.authors }}
-                  {{ range .Params.authors }}
-                  {{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}
-                  <a href="{{ .Permalink }}" class="article__author__image">
-                    <img class="lazy" data-src="{{ .Params.image }}" alt="{{ .Params.name }}">
-                  </a>
-                  {{ end }}
-                  {{ end }}
-                {{ end }}
-                </div>
-              </div>
-          
-              <div class="article__content">
-                <div class="article-tags__box">
-                {{ range .Params.tags }}
-                  <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="article__tag">{{ humanize . }}</a>
-                {{ end }}
-                </div>
-                <h2 class="article__title">
-                  <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                </h2>
-                <p class="article__excerpt">{{ if .Description }}{{ .Description }}{{ else }}{{ truncate 160 .Summary | safeHTML }}{{ end }}</p>
-              </div>
-
-            </div>
-          </div>
+        {{ range (where (where (where .Site.RegularPages "Type" "ne" "page") ".Params.featured" "=" true) ".Params.featured" "=" true) }}
+          {{  if fileExists (print "layouts/partials/content-type/" .Type ".html")  }}
+          {{ partial (print "content-type/" .Type ".html") (dict "ctx" . "template_type" "multiple") }}
+          {{ else }}
+          {{ partial "content-type/article.html" (dict "ctx" . "template_type" "multiple") }}
+          {{ end }}
         {{ end }}
         </div>
       </div>
