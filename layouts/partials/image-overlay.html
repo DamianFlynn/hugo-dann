@@ -1,0 +1,8 @@
+{{/* This is a Hugo template that uses the images.Text function to overlay text on an image */}}
+
+{{ $textOverlay := "This is some overlay text" }}
+{{ $image := images.Get "/images/quote-bg.jpg" }}
+
+{{ $textImage := $image.Text $textOverlay }}
+
+<img src="{{ $textImage.RelPermalink }}" alt="image with text overlay">

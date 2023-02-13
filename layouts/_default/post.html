@@ -1,5 +1,6 @@
 {{ define "main" }}
 
+
 {{ if or (eq .Section "post") (eq .Section "posts") }}
 
 <div class="post-head{{ if .Params.video_embed }} post-head-video{{ end }}">

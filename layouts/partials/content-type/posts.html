@@ -16,15 +16,14 @@
       </a>
       {{ end }}
 
-      <div class="article__meta">
-        
+      <div class="article__meta">  
         {{ if .ctx.Params.authors }}
         {{ range .ctx.Params.authors }}
-        {{ with $.ctx.Site.GetPage (printf "authors/%s" (urlize .)) }}
-        <a href="{{ .Permalink }}" class="article__author__image"> 
-          <img class="lazy" data-src="{{ .Params.image }}" alt="{{ .Params.name }}">
-        </a>
-        {{ end }}
+          {{ with $.ctx.Site.GetPage (printf "authors/%s" (urlize .)) }}
+          <a href="{{ .Permalink }}" class="article__author__image"> 
+            <img class="lazy" data-src="{{ .Params.image }}" alt="{{ .Params.name }}">
+          </a>
+          {{ end }}
         {{ end }}
         {{ end }}
       </div>
