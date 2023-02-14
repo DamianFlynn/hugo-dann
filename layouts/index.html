@@ -21,11 +21,7 @@
   {{ $paginationLimit := index .Site.Params "paginate" | default 7 }}
   {{ $paginator := .Paginate $pagesToPaginate $paginationLimit }}
   {{ range $paginator.Pages }}
-    {{  if fileExists (print "layouts/partials/content-type/" .Type ".html")  }}
-    {{ partial (print "content-type/" .Type ".html") (dict "ctx" . "template_type" "multiple") }}
-    {{ else }}
-    {{ partial "content-type/article.html" (dict "ctx" . "template_type" "multiple") }}
-    {{ end }}
+    {{ partial "article" . }}
   {{ end }}
   </div>
 </div>
