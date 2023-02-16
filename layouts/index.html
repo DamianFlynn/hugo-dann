@@ -13,10 +13,16 @@
   </div>
 
   <div class="row grid">
-    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "posts") }}
-    {{ range $paginator.Pages }}
-      {{ partial "article.html" . }}
-    {{ end }}
+  {{ $allNonExcludedPages := where .Site.RegularPages "Params.excludefromindex" "==" nil }}
+  {{ $allNonExcludedPagesNotTypePage := (where .Site.RegularPages "Type" "ne" "page" | intersect $allNonExcludedPages) }}
+  {{ $featuredPosts :=  (where (where .Site.RegularPages "Type" "ne" "page") ".Params.featured" "=" true)    }}
+  {{ $featuredPostRelPermalinks := $featuredPosts }}
+  {{ $pagesToPaginate := where $allNonExcludedPagesNotTypePage "RelPermalink" "not in" $featuredPostRelPermalinks }}
+  {{ $paginationLimit := index .Site.Params "paginate" | default 7 }}
+  {{ $paginator := .Paginate $pagesToPaginate $paginationLimit }}
+  {{ range $paginator.Pages }}
+    {{ partial "article" . }}
+  {{ end }}
   </div>
 </div>
 

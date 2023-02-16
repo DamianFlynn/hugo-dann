@@ -1,0 +1,29 @@
+{{ define "main" }}
+
+<!-- begin author -->
+<section class="author">
+  <div class="container">
+
+    <div class="author__content">
+      <div class="author__image"><img class="lazy" data-src="{{ .Params.image }}" alt="{{ .Params.name }}"></div>
+      <h1 class="author__name">{{ .Params.name }}</h1>
+      <div class="author__posts__count">{{ len .Pages }} {{ if lt (len .Pages) 2 }}Post{{ else }}Posts{{ end }}</div>
+
+      {{ .Content }}
+
+    </div>
+
+  </div>
+
+  <div class="container animate">
+    <div class="row">
+      {{ range .Data.Pages }}
+        {{ partial "article.html" . }}
+      {{ end }}
+    </div>
+  </div>
+
+</section>
+<!-- end author -->
+
+{{ end }}

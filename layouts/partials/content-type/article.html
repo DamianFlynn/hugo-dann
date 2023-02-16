@@ -1,0 +1,61 @@
+<div class="article col col-4 col-d-6 col-t-12 animate grid__post">
+  <div class="article__inner">
+
+    <div class="article__head">
+      {{ if .ctx.Params.video_embed }}
+      <div class="video-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+          <polygon points="40,30 65,50 40,70"></polygon>
+        </svg>
+      </div>
+      {{ end }}
+    
+      {{ if .ctx.Params.Image }}
+      <a class="article__image" href="{{ .ctx.RelPermalink }}">
+        <img class="lazy" data-src="{{ .ctx.Params.Image | absURL }}" alt="{{ .Title }}">
+      </a>
+      {{ else }}
+      <a class="article__image" href="{{ .ctx.RelPermalink }}">
+        {{ range first 1 ($.ctx.GetTerms "tags") }}
+        <img class="lazy" data-src="/images/tag-{{ .LinkTitle }}.jpg" alt="{{ .Title }}">{{ .LinkTitle }}
+        {{ end }}
+      </a>
+      {{ end }}
+
+      <div class="article__meta">  
+        {{ if .ctx.Params.authors }}
+        {{ range .ctx.Params.authors }}
+          {{ with $.ctx.Site.GetPage (printf "authors/%s" (urlize .)) }}
+          <a href="{{ .Permalink }}" class="article__author__image"> 
+            <img class="lazy" data-src="{{ .Params.image }}" alt="{{ .Params.name }}">
+          </a>
+          {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ if .ctx.Draft }}<a href="{{ .Permalink }}" class="article__draft"> 
+          <img class="lazy" data-src="/images/red-rubber-stamp-effect-draft.jpg" alt="{{ .Params.name }}">
+        </a>
+        {{end}}
+      </div>
+    </div>
+
+
+    <div class="article__content">
+
+      {{ if .ctx.Params.tags }}
+      <div class="article-tags__box">
+        {{ range ($.ctx.GetTerms "tags") }}
+        <a href="{{ .Permalink }}" class="article__tag">{{ .LinkTitle }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      <h2 class="article__title">
+        <a href="{{ .ctx.RelPermalink }}">{{ .ctx.Title }}</a>
+      </h2>
+
+      <p class="article__excerpt">{{ if .ctx.Description }}{{ .ctx.Description }}{{ else }}{{ truncate 160 .ctx.Summary | safeHTML }}{{ end }}</p>
+
+    </div>
+  </div>
+</div>

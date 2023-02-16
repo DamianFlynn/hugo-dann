@@ -1,10 +1,19 @@
 ---
 title: About
-image: 'https://via.placeholder.com/1200x800'
-description: "Hey! I’m Dann Kanigan, a Filmmaker and Content Creator based in Toronto, Ontario, Canada."
+image: 'https://avatars.githubusercontent.com/u/6288143?v=4'
+description: "Hey! I’m Damian Flynn, a Technology Evangelist & Cloud Consulting Practice Lead based in Ballina, Ireland."
 image_caption: "Photo by [Roman Shilin](https://via.placeholder.com/1200x800) on [Unsplash](https://via.placeholder.com/1200x800)"
 ---
-Leverage agile frameworks to provide a robust Hugo Sousa synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
+
+# Evangelist, Thinker, Creative Doer
+
+Principal Azure Cloud Solution Architect, ‘Governed Azure Virtual Datacenter’ Product Owner; working for Innofactor Norway, based in Ballina, Ireland. Specialising on Cloud Governance and Operations Automation, DevOps and Development.
+
+I define myself as an evangelist; an entrepreneur & author with an ideology rooted in business insights, technology exploration, pattern analysis and high energy. 
+
+> I envision, theorize and develop system architecture and strategic business platforms, soaked in storytelling and innovative technology.
+
+30 years of Multinational Enterprise IT Experience, leading Cloud implementations since 2009. Recognized for technology knowledge, my passion to share, and an ability to communicate by Microsoft as an MVP since 2011, and Cisco as a Champion since 2014;
 
 Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.
 
