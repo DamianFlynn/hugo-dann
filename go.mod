@@ -1,3 +1,3 @@
-module github.com/DamianFlynn/hugo-dann
+module github.com/damianflynn/hugo-dann
 
 go 1.19
