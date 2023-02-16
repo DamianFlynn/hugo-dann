@@ -14,6 +14,12 @@
       <a class="article__image" href="{{ .ctx.RelPermalink }}">
         <img class="lazy" data-src="{{ .ctx.Params.Image | absURL }}" alt="{{ .Title }}">
       </a>
+      {{ else }}
+      <a class="article__image" href="{{ .ctx.RelPermalink }}">
+        {{ range first 1 ($.ctx.GetTerms "tags") }}
+        <img class="lazy" data-src="/images/tag-{{ .LinkTitle }}.jpg" alt="{{ .Title }}">{{ .LinkTitle }}
+        {{ end }}
+      </a>
       {{ end }}
 
       <div class="article__meta">  
@@ -26,6 +32,10 @@
           {{ end }}
         {{ end }}
         {{ end }}
+        {{ if .ctx.Draft }}<a href="{{ .Permalink }}" class="article__draft"> 
+          <img class="lazy" data-src="/images/red-rubber-stamp-effect-draft.jpg" alt="{{ .Params.name }}">
+        </a>
+        {{end}}
       </div>
     </div>
 
