@@ -53,7 +53,7 @@ paginate = 6
   # Hero Settings
   [params.hero]
     hero__title = "Hi there! I’m Dann Kanigan, a Filmmaker and Content Creator based in Toronto, Ontario, Canada. This blog is about learning, life, and inspiring you to take one step forward."
-
+    
 
   #-------------------------------
   # Blog Section Settings
