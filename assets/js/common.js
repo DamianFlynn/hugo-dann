@@ -150,4 +150,46 @@ document.addEventListener("DOMContentLoaded", function() {
 
   load_posts_button&&load_posts_button.addEventListener("click",function(e){e.preventDefault();var o=document.querySelector(".pagination"),e=pagination_next_url.split("/page")[0]+"/page/"+pagination_next_page_number+"/";fetch(e).then(function(e){if(e.ok)return e.text()}).then(function(e){var n=document.createElement("div");n.innerHTML=e;for(var t=document.querySelector(".grid"),a=n.querySelectorAll(".grid__post"),i=0;i<a.length;i++)t.appendChild(a.item(i));new LazyLoad({elements_selector:".lazy"});pagination_next_page_number++,pagination_next_page_number>pagination_available_pages_number&&(o.style.display="none")})});
 
+  // =====================
+
+  // Scroll to Top
+  const scrollTop = document.querySelector('.js-scroll-top');
+
+  if (scrollTop) {
+    const progressPath = document.querySelector('.scroll-top path');
+    const pathLength = progressPath.getTotalLength();
+    progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
+    progressPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
+    progressPath.style.strokeDashoffset = pathLength;
+    progressPath.getBoundingClientRect();
+    progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';		
+    const updateProgress = function() {
+      const scroll = window.scrollY || window.scrollTop || document.documentElement.scrollTop;
+  
+      const docHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      );
+  
+      const windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  
+      const height = docHeight - windowHeight;
+      var progress = pathLength - (scroll * pathLength / height);
+      progressPath.style.strokeDashoffset = progress;
+    }
+  
+    updateProgress();
+    const offset = 60;
+
+    window.addEventListener('scroll', function(event) {
+      updateProgress();
+      
+      //Scroll back to top
+      const scrollPos = window.scrollY || window.scrollTop || document.getElementsByTagName('html')[0].scrollTop;
+      scrollPos > offset ? scrollTop.classList.add('is-active') : scrollTop.classList.remove('is-active');
+    
+    }, false);
+  }
+
 });
