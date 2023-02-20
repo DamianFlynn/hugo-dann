@@ -73,6 +73,9 @@
 
   {{ partial "javascripts.html" . }}
   {{ partial "button.html" . }}
+  {{ if and (isset .Site.Params "algolia_search") (eq .Site.Params.algolia_search true) }}
+  {{ partial "algolia-search.html" . }}
+  {{ end }}
 </body>
 
 </html>
