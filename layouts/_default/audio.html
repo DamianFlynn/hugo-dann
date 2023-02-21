@@ -106,7 +106,7 @@
 
     {{ partial "share-buttons.html" . }}
 
-    {{ if .Site.Params.disqus.disqusShortname }}
+    {{ if ( .Params.comments | default true ) }}
       {{ partial "disqus-comments.html" . }}
     {{ end }}
   </article>
