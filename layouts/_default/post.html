@@ -64,7 +64,7 @@
               <time class="post__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">Published: {{ .Date.Format "2 January, 2006" }}</time>
               <time class="post__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">Edited on: <a href="https://github.com/DamianFlynn/garden/commits/main/content{{.RelPermalink}}">{{ .Lastmod.Format "2 January, 2006" }}</a></time>
               <div class="post__author__name">{{ .ReadingTime }} minute{{- if (gt .ReadingTime 1) -}}s{{- end }} reading time.</div>
-              {{- if $.GitInfo -}}<a href="https://github.com/DamianFlynn/hugo/commit/{{ .GitInfo.Hash }}" title="Latest commit for this page" rel="noopener">Latest&nbsp;commit</a> ({{- if ne (.PublishDate.Format "2006-01-02") (.Lastmod.Format "2006-01-02") }}{{ .Lastmod.Format "2006-01-02" }}{{- else -}}same date{{- end }}) &bull; <a href="https://github.com/DamianFlynn/garden/commits/main/content/{{ .File.Path }}" title="This page’s commit history">History</a>{{- else -}}&nbsp;{{- end -}}
+              {{- if .GitInfo -}}<a href="https://github.com/DamianFlynn/hugo/commit/{{ .GitInfo.Hash }}" title="Latest commit for this page" rel="noopener">Latest&nbsp;commit</a> ({{- if ne (.PublishDate.Format "2006-01-02") (.Lastmod.Format "2006-01-02") }}{{ .Lastmod.Format "2006-01-02" }}{{- else -}}same date{{- end }}) &bull; <a href="https://github.com/DamianFlynn/garden/commits/main/content/{{ .File.Path }}" title="This page’s commit history">History</a>{{- else -}}&nbsp;{{- end -}}
 	
             </div>
           </div>
