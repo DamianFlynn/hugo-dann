@@ -2,7 +2,7 @@
 title: About
 image: 'https://avatars.githubusercontent.com/u/6288143?v=4'
 description: "Hey! I’m Damian Flynn, a Technology Evangelist & Cloud Consulting Practice Lead based in Ballina, Ireland."
-image_caption: "Photo by [Roman Shilin](https://via.placeholder.com/1200x800) on [Unsplash](https://via.placeholder.com/1200x800)"
+image_caption: "Photo by author"
 ---
 
 # Evangelist, Thinker, Creative Doer
