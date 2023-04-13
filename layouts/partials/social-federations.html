@@ -1,0 +1,11 @@
+{{ $image := partial "pageImage" . }}
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ if not .IsHome }}{{ .Title }}{{ .Params.name }} | {{ end }}{{ .Site.Title }}">
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+{{ if .IsHome}}<meta name="twitter:image" content="{{ .Site.Params.hero.hero__image | absURL }}">{{ else }}<meta name="twitter:image" content="{{ $image }}">{{ end }}
+
+<!-- Facebook OpenGraph -->
+<meta property="og:title" content="{{ if not .IsHome }}{{ .Title }}{{ .Params.name }} | {{ end }}{{ .Site.Title }}">
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+{{ if .IsHome}}<meta property="og:image" content="{{ .Site.Params.hero.hero__image | absURL }}">{{ else }}<meta property="og:image" content="{{ $image }}">{{ end }}

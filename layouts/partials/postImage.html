@@ -1,0 +1,41 @@
+<!-- Get the Watermark Thumbprint -->
+{{- $watermark := resources.Get "/images/df-logo.png" -}}
+{{- $watermark := $watermark.Resize "100x" -}}
+{{- $filterWatermark := (images.Overlay $watermark 1075 675 ) -}}
+
+<!-- Get the Font -->
+{{ $font := resources.GetRemote "https://github.com/google/fonts/raw/main/apache/roboto/static/Roboto-Black.ttf" }}
+
+
+<!-- Set the Failback default image from /assets/images  -->
+{{ $postImg := resources.GetMatch "/images/category/general.jpg" }}
+
+<!-- Try to use the pages image -->
+{{- with .Page.Resources.GetMatch .Params.image -}}
+{{- $postImg = . -}}
+{{- else -}}
+<!-- trying  the page primary category image -->
+{{- with resources.GetMatch ((printf "/images/category/%s.jpg" (index (.Params.categories) 0 )) | replaceRE " " "-" | lower) -}}
+{{- $postImg = . -}}
+{{- end -}}
+{{- end -}}
+
+<!-- Apply Image Filters -->
+{{- $postImg = $postImg | images.Filter $filterWatermark -}}
+
+{{ if in $postImg.RelPermalink "category" }}
+<!-- Add Text to the Image -->
+{{ $thumbTitle := .Title | truncate 20 }}
+{{ $postImg = $postImg.Filter (images.Text (print .Title) (dict
+    "text" $thumbTitle
+    "color" "#666666"
+    "size" 60
+    "linespacing" 2
+    "x" 120
+    "y" 90
+    "font" $font
+))}}
+{{else}}
+{{- $postImg = $postImg.Resize "600x800" -}}
+{{end}}
+<img class="lazy" data-src="{{ $postImg.RelPermalink }}" alt="{{ .Title }}">

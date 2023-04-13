@@ -10,18 +10,10 @@
       </div>
       {{ end }}
     
-      {{ if .ctx.Params.Image }}
       <a class="article__image" href="{{ .ctx.RelPermalink }}">
-        <img class="lazy" data-src="{{ .ctx.Params.Image | absURL }}" alt="{{ .Title }}">
+        {{partial "postImage.html" .ctx}}  
       </a>
-      {{ else }}
-      <a class="article__image" href="{{ .ctx.RelPermalink }}">
-        {{ range first 1 ($.ctx.GetTerms "tags") }}
-        <img class="lazy" data-src="/images/tag-{{ .LinkTitle }}.jpg" alt="{{ .Title }}">{{ .LinkTitle }}
-        {{ end }}
-      </a>
-      {{ end }}
-
+      
       <div class="article__meta">  
         {{ if .ctx.Params.authors }}
         {{ range .ctx.Params.authors }}

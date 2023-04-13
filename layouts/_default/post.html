@@ -80,11 +80,11 @@
         </div>
       </div>
       {{ else }}
-
+      
       {{ if .Params.image }}
       <div class="col col-5 push-1 col-d-12 push-d-0">
         <div class="post-image">
-          <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}">
+          {{ partial "postImage.html" .}}
         </div>
         {{ if .Params.image_caption }}
         <div class="post-image-caption">{{ .Params.image_caption | markdownify }}</div>
