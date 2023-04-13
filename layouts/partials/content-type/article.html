@@ -9,10 +9,12 @@
         </svg>
       </div>
       {{ end }}
-    
+
+      {{ if not (or (eq .ctx.Type "tags") (eq .ctx.Type "categories")) }}
       <a class="article__image" href="{{ .ctx.RelPermalink }}">
         {{partial "postImage.html" .ctx}}  
       </a>
+      {{end}}
       
       <div class="article__meta">  
         {{ if .ctx.Params.authors }}
